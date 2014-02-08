@@ -1,4 +1,5 @@
 <?php
+define('HTTP_PATH', 'http://world.mkgalaxy.com');
 define('ROOT_DIR', dirname(__FILE__));
 define('LIBS_DIRECTORY', ROOT_DIR.'/libraries');
 define('WORLD_DIRECTORY', LIBS_DIRECTORY.'/world');
