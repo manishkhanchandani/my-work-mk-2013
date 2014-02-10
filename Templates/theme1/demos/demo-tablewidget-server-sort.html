@@ -1,0 +1,104 @@
+<? @include($_SERVER['DOCUMENT_ROOT']."/config/log_visitors.inc"); ?>
+<?
+include($_SERVER['DOCUMENT_ROOT']."/config/connect.php");
+?>
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01//EN" "http://www.w3.org/TR/html4/strict.dtd">
+<HTML>
+<HEAD>
+	<title>Demo 2: Table widget (server side sort)</title>
+	<?
+	$keywords = "DHTML table,Table with fixed header,Table widget,DHTML Suite for applications";
+	@include($_SERVER['DOCUMENT_ROOT']."/config/metatags.inc");
+	?>		
+	<link rel="stylesheet" href="css/demos.css" media="screen" type="text/css">
+	<script type="text/javascript" src="../js/ajax.js"></script>
+	<script type="text/javascript" src="../js/dhtml-suite-for-applications-without-comments.js"></script>
+</head>
+<body>
+<div id="header">
+	<img src="../images/logo.png">
+</div>	
+<h2>Table widget 1</h2>
+<p>This table is sorted on the server. When you click on the headings, an ajax request is sent to the server and the script then populates the table with the new data returned from the server.</p>
+<!-- Start of table html -->
+<div>
+<table id="myTable">
+	<colgroup>
+		<col style="width:20%"></col>
+		<col style="width:20%"></col>
+		<col style="width:20%"></col>
+		<col></col>
+		<col></col>
+	</colgroup>
+	<thead>
+		<tr>
+			<td sortBy="lastname">Lastname</td>
+			<td sortBy="firstname">Firstname</td>
+			<td sortBy="position">Position</td>
+			<td sortBy="income">Income</td>
+			<td sortBy="hired">Employee since</td>
+		</tr>
+	</thead>
+	<tbody>
+		<?
+		$res = mysql_query("select * from dhtmlsuite_tableWidgetData order by lastname limit 10");
+		while($inf = mysql_fetch_array($res)){
+			?>
+			<TR>
+				<TD><? echo $inf["lastname"]; ?></TD>
+				<TD><? echo $inf["firstname"]; ?></TD>
+				<TD><? echo $inf["position"]; ?></TD>
+				<TD><? echo $inf["income"]; ?></TD>
+				<TD><? echo $inf["hired"]; ?></TD>
+
+			</TR>		
+			<?		
+		}
+		
+		
+		?>
+	</tbody>
+</table>
+</div>
+
+<div id="tableWidgetPagina"></div>
+
+
+<script type="text/javascript">
+
+var tableWidgetObj = new DHTMLSuite.tableWidget();
+DHTMLSuite.commonObj.setCssCacheStatus(false)
+
+tableWidgetObj.setTableId('myTable');
+tableWidgetObj.setTableWidth('95%');
+tableWidgetObj.setTableHeight(230);
+tableWidgetObj.setServerSideSort(true);
+tableWidgetObj.setColumnSort(Array('S','S','S','N','N'));	// The value doesn't matter here since we're using server side sort. However, we need to set a value for the sortable columns.
+tableWidgetObj.setServersideSortFileName('includes/getTableData.php');	// Specify server side file name
+tableWidgetObj.setServersideSortNumberOfRows(10);	// Receive 10 rows from the server
+tableWidgetObj.init();
+tableWidgetObj.updateTableHeader(0,'ascending');
+
+// Creating pagina object
+
+var pagehandler = new DHTMLSuite.tableWidgetPageHandler();
+pagehandler.setTargetId('tableWidgetPagina');	// Specify where to insert the paginating object.
+pagehandler.setTableRef(tableWidgetObj);	// Specify where to insert the paginating object.
+pagehandler.setMaximumNumberOfPageLinks(6);
+<?
+// Get total number of rows from the database */
+$res = mysql_query("select count(ID) as countRows from dhtmlsuite_tableWidgetData") or die(mysql_error());
+$inf = mysql_fetch_array($res);
+?>
+pagehandler.setTotalNumberOfRows(<? echo $inf["countRows"]; ?>);
+pagehandler.init();
+</script>
+
+
+<!-- Start of second table -->
+<br>
+<?
+include($_SERVER['DOCUMENT_ROOT']."/config/kontera.php");
+?>	
+</body>
+</html>

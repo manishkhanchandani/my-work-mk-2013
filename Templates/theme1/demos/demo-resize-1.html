@@ -1,0 +1,79 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01//EN" "http://www.w3.org/TR/html4/strict.dtd">
+<HTML>
+<HEAD>
+	<title>Demo 1: Resize widget</title>
+	<link rel="stylesheet" href="css/demos.css" media="screen" type="text/css">
+	<script type="text/javascript" src="../js/ajax.js"></script>
+	<script type="text/javascript" src="../js/dhtml-suite-for-applications-without-comments.js"></script>
+	<style type="text/css">
+	body{
+		margin:0px;
+	}
+	#divToBeResized,#divToBeResized2{
+		width:150px;
+		height:113px;
+		border:1px dotted #000;
+		position:relative;
+		margin-left:40px;
+		margin-top:40px;
+	}
+	
+	.differentResizeHandle{
+		width:10px;
+		height:10px;
+		background-color:blue;
+		position:absolute;
+	}
+	</style>
+</head>
+<div id="header">
+	<img src="../images/logo.png">
+</div>
+<div style="height:300px">
+<p>Here, I'm resizing a div. A callback function is used to resize the image within the div.</p>
+<div id="divToBeResized">
+	<img src="demo-images/resize/image-1.jpg" width="150">
+</div>
+</div>
+<br>
+<br>
+<br>
+<div style="height:300px">
+<p>Similar to the one above, but this one preserves aspect ratio.</p>
+<div id="divToBeResized2">
+	<img src="demo-images/resize/image-1.jpg" width="150">
+</div>
+</div>
+
+<script type="text/javascript">
+var el = document
+function resizeImage(resizeObject)
+{
+	var el = resizeObject.getReferenceToResizedElement();
+	var img = el.getElementsByTagName('IMG')[0];
+	img.setAttribute('width',el.clientWidth);
+	img.setAttribute('height',el.clientHeight);
+	
+	//img.heigth = el.clientHeight;
+
+	
+}
+
+var myResize = new DHTMLSuite.resize( { minWidth:20, minHeight:20, maxWidth:900, preserveRatio:0,resizeInWhichDirections:'all'} );
+myResize.setElementRoResize('divToBeResized');
+myResize.setCallbackOnDuringResize('resizeImage');
+myResize.init();
+
+
+var myResize2 = new DHTMLSuite.resize( { minWidth:20, minHeight:20, maxWidth:900, preserveRatio:1,resizeInWhichDirections:'east,south,southeast'} );
+myResize2.setElementRoResize('divToBeResized2');
+myResize2.setCallbackOnDuringResize('resizeImage');
+myResize2.setCssClassNameForResizeHandles('differentResizeHandle');
+myResize2.setResizeHandlerOffsetInPixels(11);
+myResize2.init();
+
+</script>
+
+
+</body>
+</html>

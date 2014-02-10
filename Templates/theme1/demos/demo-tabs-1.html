@@ -1,0 +1,304 @@
+<?
+@include($_SERVER['DOCUMENT_ROOT']."/config/log_visitors.inc");
+?>
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01//EN" "http://www.w3.org/TR/html4/strict.dtd">
+<HTML>
+<HEAD>
+	<title>Demo 1 - Tab view</title>
+	<?
+	@include($_SERVER['DOCUMENT_ROOT']."/config/metatags.inc");
+	?>	
+	<link rel="stylesheet" href="css/demos.css" media="screen" type="text/css">
+	<style type="text/css">
+	/* CSS for the demo. CSS needed for the scripts are loaded dynamically by the scripts */
+	h3{
+		margin-top:40px;
+	}
+	</style>	
+	<style type="text/css">
+		/* SLIDER CSS */
+		#valueOfRedSlider,#valueOfGreenSlider,#valueOfBlueSlider{
+			width:50px;
+			float:left;
+		}
+		#redSlider,#greenSlider,#blueSlider{
+			width:200px;
+			height:20px;
+			float:left;
+			margin-right:5px;
+		
+		}
+		#sliderInputDiv{
+			width:30px;
+			height:20px;
+		}
+		
+		.clear{
+			clear:both;
+	
+		}	
+		.ver_slider{
+			height:230px;
+			width:30px;
+			float:left;
+		}
+		#ver_slide1,#ver_slide2,#ver_slide3{
+			width:30px;
+			height:200px;
+			margin-bottom:3px;
+		}
+	</style>	
+	<script type="text/javascript" src="../js/dhtml-suite-for-applications-without-comments.js"></script>
+	<script type="text/javascript" src="../js/ajax.js"></script>
+	<script type="text/javascript">
+	/* Custom SLIDER FUNCTIONS IN THIS DEMO */
+	
+	function setFormFieldValue(value,nameOfSlider)
+	{
+		document.forms[0].elements[nameOfSlider].value = value;
+	}
+	
+	function setSliderValue(whichEl,newValue)
+	{
+		var el;
+		switch(whichEl){
+			case "red":
+				el = sliderObj;
+				break;
+			case "green":
+				el = sliderObj2;
+				break;
+			case "blue":
+				el = sliderObj3;
+				break;
+		}	
+		
+		el.setSliderValue(newValue);
+		
+	}
+	</script>
+</head>
+<body>	
+	<div id="header">
+		<img src="../images/logo.png">
+	</div>
+<h3>Tab view example 1</h3>
+<div id="DHTMLSuite_tabView1">
+	<div class="DHTMLSuite_aTab">
+		This is the content of the first tab. This is just a plain &lt;DIV>. The tabs
+		are created by a javascript function.  This is the content of the first tab. This is just a plain &lt;DIV>. The tabs
+		are created by a javascript function.  This is the content of the first tab. This is just a plain &lt;DIV>. The tabs
+		are created by a javascript function. 	<br><br>
+		<a href="#" onclick="tabViewObj.createNewTab('DHTMLSuite_tabView1','A dynamic tab','','includes/demo-tabs-tabContent-1.html');return false">Create new tab dynamically</a><br>
+		<a href="#" onclick="tabViewObj.deleteTab('General');return false">Remove this tab</a><br>
+		<a href="#" onclick="tabViewObj.addContentToTab('General','includes/tab_include1.inc');return false">Add content to this tab</a>
+
+		
+		
+	</div>
+	<div class="DHTMLSuite_aTab">
+		This is the content of the second tab.	<br>
+		<a href="#" onclick="tabViewObj.deleteTab('News');return false">Remove this tab</a><br>
+		<br>
+		<!-- Sub tabs -->
+		<div id="DHTMLSuite_tabView5">
+			<div class="DHTMLSuite_aTab">
+				Content of tab.
+			</div>
+			<div class="DHTMLSuite_aTab">
+				This is the content of the second tab.	<br>
+			</div>
+			<div class="DHTMLSuite_aTab">
+				This is the content of a tab in a sub tab set<br>
+				<a href="#" onclick="tabViewObj5.deleteTab('News 3');return false">Remove this tab</a><br>
+			</div>
+		</div>
+		<!-- End sub tabs -->
+
+			
+	</div>
+	<div class="DHTMLSuite_aTab">
+		This script is tested in 
+		<a href="#" onclick="tabViewObj.deleteTab('Tools');return false">Remove this tab</a><br>
+		<ul>
+			<li>IE 5.5</li>
+			<li>IE 6</li>
+			<li>Opera 8.5</li>
+			<li>Firefox</li>
+		</ul>	
+	</div>
+	<div class="DHTMLSuite_aTab">
+		<div id="mainContainer">
+			<form>
+			<!-- Start horizontal sliders -->
+			<div id="redSlider"></div>
+			<div id="valueOfRedSlider" class="sliderInputDiv"><input type="text" size="3" name="red" value="30" onchange="setSliderValue('red',this.value)"></div>
+			
+			<div class="clear"></div>
+			
+			<div id="greenSlider"></div>
+			<div id="valueOfGreenSlider" class="sliderInputDiv"><input type="text" size="3" name="green" value="0" onchange="setSliderValue('green',this.value)"></div>
+			
+			<div class="clear"></div>
+			
+			<div id="blueSlider"></div>
+			<div id="valueOfBlueSlider" class="sliderInputDiv"><input type="text" size="3" name="blue" value="30" onchange="setSliderValue('blue',this.value)"></div>
+			</form>
+			<div class="clear"></div>	
+		</div>
+			
+	</div>
+</div>
+<script type="text/javascript">
+var tabViewObj = new DHTMLSuite.tabView();
+tabViewObj.setParentId('DHTMLSuite_tabView1');
+tabViewObj.setTabTitles(Array('General','News','Tools','Slider'));
+tabViewObj.setCloseButtons(Array(false,true,true,true));
+tabViewObj.setIndexActiveTab(1);
+tabViewObj.setWidth('500');
+tabViewObj.setHeight('200');
+tabViewObj.init();
+
+// Creating sub tab view.
+var tabViewObj5 = new DHTMLSuite.tabView();
+tabViewObj5.setParentId('DHTMLSuite_tabView5');
+tabViewObj5.setTabTitles(Array('News 1','News 2','News 3'));
+tabViewObj5.setIndexActiveTab(1);
+tabViewObj5.setWidth('400');
+tabViewObj5.setHeight('80');
+tabViewObj5.init();
+
+/* Creating slider objects inside tabViewObj1 */
+var sliderObj = new DHTMLSuite.slider();
+sliderObj.setSliderTarget('redSlider');
+sliderObj.setOnChangeEvent('setFormFieldValue');
+sliderObj.setSliderName('red');
+sliderObj.setInitialValue(30);
+sliderObj.setSliderMaxValue(255);
+sliderObj.setSliderReversed();
+sliderObj.init();
+
+var sliderObj2 = new DHTMLSuite.slider();
+sliderObj2.setSliderTarget('greenSlider');
+sliderObj2.setOnChangeEvent('setFormFieldValue');
+sliderObj2.setSliderName('green');
+sliderObj2.setInitialValue(30);
+sliderObj2.setSliderMaxValue(255);
+sliderObj2.init();
+
+var sliderObj3 = new DHTMLSuite.slider();
+sliderObj3.setSliderTarget('blueSlider');
+sliderObj3.setSliderName('blue');
+sliderObj3.setInitialValue(2);
+sliderObj3.setSliderMaxValue(10);
+sliderObj3.setNumberOfSliderSteps(10);
+sliderObj3.setOnChangeEvent('setFormFieldValue');
+sliderObj3.init();
+
+
+
+</script>
+<br>
+<h3>Tab view example 2</h3>
+<div id="DHTMLSuite_tabView2">
+	<div class="DHTMLSuite_aTab">
+		This is the content of the first tab. 
+		This is just a plain &lt;DIV>. The tabs
+		are created by a javascript function.  This is the content of the first tab. This is just a plain &lt;DIV>. The tabs
+		are created by a javascript function.  This is the content of the first tab. This is just a plain &lt;DIV>. The tabs
+		are created by a javascript function. 	<br><br>
+	</div>
+	<div class="DHTMLSuite_aTab">
+		This is the content of the second tab.	<br>
+		<a href="#" onclick="tabViewObj2.deleteTab('Tab 2');return false">Remove this tab</a><br>
+	</div>
+	<div class="DHTMLSuite_aTab">
+		This script is tested in 
+		<a href="#" onclick="tabViewObj2.deleteTab('Tab 3');return false">Remove this tab</a><br>
+		<ul>
+			<li>IE 5.5</li>
+			<li>IE 6</li>
+			<li>Opera 8.5</li>
+			<li>Firefox</li>
+		</ul>	
+	</div>
+	<div class="DHTMLSuite_aTab">
+		Content of tab 4<br>
+	</div>
+</div>
+
+<script type="text/javascript">
+var tabViewObj2 = new DHTMLSuite.tabView();
+tabViewObj2.setParentId('DHTMLSuite_tabView2');
+tabViewObj2.setTabTitles(Array('Tab 1','Tab 2','Tab 3','Tab 4'));
+tabViewObj2.setIndexActiveTab(2);
+tabViewObj2.setWidth('600');
+tabViewObj2.setHeight('200');
+tabViewObj2.init();
+
+</script>
+<br>
+<h3>Tab view example 3</h3>
+<div id="DHTMLSuite_tabView3">
+	<div class="DHTMLSuite_aTab">
+		This is the content of the first tab.	<br>
+	</div>
+	<div class="DHTMLSuite_aTab">
+		This script is tested in 
+		<a href="#" onclick="tabViewObj3.deleteTab('CSS');return false">Remove this tab</a><br>
+		<ul>
+			<li>IE 5.5</li>
+			<li>IE 6</li>
+			<li>Opera 8.5</li>
+			<li>Firefox</li>
+		</ul>	
+	</div>
+	<div class="DHTMLSuite_aTab">
+		Content of tab 4<br>
+		<a href="#" onclick="tabViewObj3.displayATab('CSS');return false">Display the "CSS" tab</a>
+	</div>
+	<div class="DHTMLSuite_aTab">
+		Content of tab 4<br>
+		
+		<!-- Sub tabs -->
+		<div id="DHTMLSuite_tabView4">
+			<div class="DHTMLSuite_aTab">
+				Content of tab.
+			</div>
+			<div class="DHTMLSuite_aTab">
+				This is the content of the second tab.	<br>
+			</div>
+			<div class="DHTMLSuite_aTab">
+				Content of another tabbr>
+				<a href="#" onclick="tabViewObj4.deleteTab('Sub tab 3');return false">Remove this tab</a><br>
+			</div>
+		</div>
+		<!-- End sub tabs -->
+		
+	</div>
+		
+</div>
+
+<script type="text/javascript">
+var tabViewObj3 = new DHTMLSuite.tabView();
+tabViewObj3.setParentId('DHTMLSuite_tabView3');
+tabViewObj3.setTabTitles(Array('HTML','CSS','Javascript','Sub tabs'));
+tabViewObj3.setIndexActiveTab(2);
+tabViewObj3.setWidth('400');
+tabViewObj3.setHeight('200');
+tabViewObj3.init();
+
+
+var tabViewObj4 = new DHTMLSuite.tabView();
+tabViewObj4.setParentId('DHTMLSuite_tabView4');
+tabViewObj4.setTabTitles(Array('Sub 1','Sub tab 2','Sub tab 3'));
+tabViewObj4.setIndexActiveTab(2);
+tabViewObj4.setWidth('300');
+tabViewObj4.setHeight('120');
+tabViewObj4.init();
+
+</script>
+
+
+</body>
+</html>
