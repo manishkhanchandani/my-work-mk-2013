@@ -1,0 +1,211 @@
+<? @include($_SERVER['DOCUMENT_ROOT']."/config/log_visitors.inc"); ?>
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01//EN" "http://www.w3.org/TR/html4/strict.dtd">
+<HTML>
+<HEAD>
+	<title>Demo: Form validator</title>
+	<?
+	$keywords = "DHTML form validator,Form validation,Javascript form validator,form validation,Client side form validation,Form validation";
+	@include($_SERVER['DOCUMENT_ROOT']."/config/metatags.inc");
+	?>		
+	<link rel="stylesheet" href="css/demos.css" media="screen" type="text/css">
+	<script type="text/javascript" src="../js/separateFiles/dhtmlSuite-common.js"></script>
+	<script type="text/javascript">
+	DHTMLSuite.include('formValidator');
+	DHTMLSuite.include('form');
+	</script>
+	<style type="text/css">
+	body{
+		margin:0px;
+		font-size:0.8em;
+	}
+	#mainContainer{
+		width:840px;	
+		margin:5px;
+	}
+	table,tr,td{
+		vertical-align:top;
+	}
+	.textInput{
+		width:300px;
+	}
+	html{
+		margin:0px;
+	}
+	.formButton{
+		width:75px;
+	}
+	textarea,input,select{
+		font-family:Trebuchet MS;
+	}
+	i{
+		font-size:0.9em;
+	}
+	</style>
+</head>
+<body>
+
+<div id="mainContainer" style="">
+	<fieldset>
+		<legend>Form validator and Form submission in the DHTML Suite</legend>
+	<form action="someplace.html" method="post" name="myForm">
+		<div id="formResponse">
+		<table>
+			<tr>
+				<td><label for="firstname">First name:</label></td>
+				<td id="_firstname"></td>
+				<td><input type="text" class="textInput" name="firstname" id="firstname" required><i> required</i></td>
+			</tr>
+			<tr>
+				<td><label for="lastname">Last name:</label></td>
+				<td id="_lastname"></td>
+				<td><input type="text" class="textInput" name="lastname" id="lastname" required><i> required</i></td>
+			</tr>
+			<tr>
+				<td><label for="address">Address:</label></td>
+				<td id="_address"></td>
+				<td><textarea class="textInput" name="address" required></textarea><i> Required</i></td>
+			</tr>
+			<tr>
+				<td><label for="zipCode">Zip code:</label>
+				<td id="_zipCode"></td>
+				<td><input type="text" name="zipCode" size="10" id="zipCode" mask="numeric" minLength="4" maxlength="10" required><i> mask="numeric", minLength="4"</i></td>
+			</tr>
+			<tr>
+				<td><label for="age">Age:</label></td>
+				<td id="_age"></td>
+				<td><input type="text" name="age" id="age" required maxlength="3" size="3" mask="numeric" minlength="2"><i> mask="numeric", minLength="2"</i></td>
+			</tr>
+			<tr>
+				<td><label for="email">Email:</label></td>
+				<td id="_email"></td>
+				<td><input class="textInput" required type="text" name="email" id="email" mask="email" maxlength="255"><i> mask="email"</i></td>
+			</tr>
+			<tr>
+				<td><label for="email">Repeat email:</label></td>
+				<td id="_email2"></td>
+				<td><input class="textInput" required type="text" name="email2" id="email2" mask="email" equalTo="email" maxlength="255"><i> mask="email", equalTo="email"</i></td>
+			</tr>
+			<tr>
+				<td><label for="url">Url:</label></td>
+				<td id="_url"></td>
+				<td><input class="textInput" required type="text" name="url" id="url" mask="domain" maxlength="255"><i> mask="domain"</i></td>
+			</tr>
+			<tr>
+				<td><label for="alpha">Alpha chars:</label></td>
+				<td id="_alpha"></td>
+				<td><input type="text" class="textInput" id="alpha" name="alpha" mask="letter" maxlength="255"><i> mask="letter"</i></td>
+			</tr>
+			<tr>
+				<td><label for="custom">Code:</label></td>
+				<td id="_custom"></td>
+				<td><input type="text" class="textInput" id="custom" name="custom" freemask="NNNN-SS" maxlength="255" caseInsensitive="1"><i> freemask="NNNN-SS" (Example: "1234-AB"),  caseInsensitive="1"</i></td>
+			</tr>
+			<tr>
+				<td><label for="custom">Code 2:</label></td>
+				<td id="_custom2"></td>
+				<td><input type="text" class="textInput" id="custom2" name="custom2" regexpPattern="^[Jj]avascript$" maxlength="255" caseInsensitive="1"><i> regexpPattern="^[Jj]avascript$"</i></td>
+			</tr>
+			
+			<tr>
+				<td>Country:</td>
+				<td id="_country"></td>
+				<td><select name="country" required>
+					<option value=""></option>
+					<option value="NO">Norway</option>
+					<option value="DK">Denmark</option>
+					<option value="SE">Sweden</option>
+					<option value="UK">United Kingdom</option>
+					<option value="US">United States</option>
+					</select> <i>Required</i>
+				</td>
+			</tr>
+			<tr>
+				<td colspan="2"><label for="comments">Comments:</label></td>
+				<td><textarea class="textInput" name="comments"></textarea> <i>No validation attributes</i></td>
+			</tr>
+			<tr>
+				<td>Gender:</td>
+				<td id="_gender"></td>
+				<td>
+					<table cellpadding="0" cellspacing="0">
+						<tr>
+							<td><input type="radio" required name="gender" value="F" id="genderFemale"></td>
+							<td><label for="genderFemale"> Female</label></td>
+							<td> <input required type="radio" name="gender" value="M" id="genderMale"></td>
+							<td><label for="genderMale"> Male</label></td>
+						</tr>
+					</table>
+				</td>
+			</tr>	
+			<tr>
+				<td>Hobbies:<br><i>Required</i></td>
+				<td id="_hobbies[]"></td>
+				<td>
+					<input type="checkbox" required name="hobbies[]" value="games" id="hobby_games"><label for="hobby_games">Computer games</label><br>
+					<input type="checkbox" required name="hobbies[]" value="soccer" id="hobby_soccer"><label for="hobby_soccer">Soccer</label><br>
+					<input type="checkbox" required name="hobbies[]" value="stamps" id="hobby_stamps"><label for="hobby_stamps">Stamps</label><br>
+					<input type="checkbox" required name="hobbies[]" value="shopping" id="hobby_shopping"><label for="hobby_shopping">Shopping</label><br>
+				</tr>
+			<tr>
+				<td></td>
+				<td id="_agree"></td>
+				<td><input type="checkbox" required name="agree" id="agree" value="agree"> <label for="agree">I agree</label></td>
+			</tr>
+			<tr>
+				<td colspan="2">
+				</td>
+				<td>
+					<input type="button" id="mySubmit" class="formButton" value="Send" onclick="formObj.submit()">
+					<input type="reset" class="formButton" value="Reset">
+				</td>
+			</tr>
+		</table>
+	</div>		
+	</form>
+	<p>You can choose if and how you want to indicate errors in the form. Here, I'm using images and css.</p>
+	</fieldset>	
+		<p>The submit button will be enabled when all the form is validated. This is done by callback functions.</p>
+		<p>To specify how to validate inputs, custom attributes has been assigned to the input tags. Example:</p>
+		<pre>&lt;input type="text" name="age" id="age" required maxlength="3" size="3" mask="numeric" minlength="2"></pre>
+		<p>The images indicating valid and invalid inputs are inserted into empty elements on the page:</p>
+		<pre>
+&lt;tr>
+	&lt;td>Gender:&lt;/td>
+	&lt;td id="_gender">&lt;/td>
+	&lt;td><br>&lt;input type="radio" required name="gender" value="F" id="genderFemale"> &lt;label for="genderFemale"> Female&lt;/label><br>&lt;input required type="radio" name="gender" value="M" id="genderMale"> &lt;label for="genderMale">Male&lt;/label>&lt;/td>
+&lt;/tr>
+		</pre> 
+		<p>Notice the id "_gender" correspond with the name of the input "gender". The "_" prefix tells the script that the validation image could be inserteded here.</p>
+
+
+</div>
+
+
+<script type="text/javascript">
+function enableSubmit()
+{
+	document.getElementById('mySubmit').disabled = false;	
+}
+
+function disableSubmit()
+{
+	document.getElementById('mySubmit').disabled = true;
+}
+
+// Passing name of form as formRef - the reference can be name, id or direct reference
+var formValObj = new DHTMLSuite.formValidator({ formRef:'myForm',keyValidation:true,callbackOnFormValid:'enableSubmit',callbackOnFormInvalid:'disableSubmit',indicateWithBars:true });
+
+var formObj = new DHTMLSuite.form({ formRef:'myForm',action:'includes/formSubmit.php',responseEl:'formResponse'});
+
+
+
+
+</script>
+
+
+ <?
+@include($_SERVER['DOCUMENT_ROOT']."/config/kontera.php");
+
+?>	
+</body>
+</html>

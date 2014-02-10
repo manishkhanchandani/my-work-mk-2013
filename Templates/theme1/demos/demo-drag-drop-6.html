@@ -1,0 +1,115 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01//EN" "http://www.w3.org/TR/html4/strict.dtd">
+<HTML>
+<HEAD>
+	<title>Demo 5: Drag and drop</title>
+	<link rel="stylesheet" href="css/demos.css" media="screen" type="text/css">
+	<style type="text/css">
+	/* CSS for the demo. CSS needed for the scripts are loaded dynamically by the scripts */
+	#mainContainer{
+		width:600px;
+		margin:0 auto;
+		margin-top:10px;
+		border:1px solid #000;
+		padding:2px;
+	}
+		
+	a{
+		color:#F00;
+	}
+		
+	.clear{
+		clear:both;
+	}
+	
+	#parentBox1{
+		width:300px;
+		height:200px;
+		border:1px solid #000;
+		background-color:#CCC;
+		padding:3px;
+		margin-bottom:5px;
+	}
+	.dragableBox{
+		width:90px;
+		height:60px;
+		margin-right:5px;
+		float:left;
+		border:1px solid #000;
+		background-color:#FFF;
+		text-align:center;
+		padding-top:30px;
+	}
+	
+	#parentBox2{
+		width:300px;
+		height:200px;
+		border:1px solid #000;
+		background-color:#FF0;
+		padding:3px;	
+		
+	
+	}
+	
+	</style>	
+	<script type="text/javascript" src="../js/dhtml-suite-for-applications.js"></script>
+</head>
+<body>	
+	<img src="../images/logo.png">
+	<div id="parentBox1">
+	
+		<div id="dragBox1" class="dragableBox">Limited drag</div>
+		<div id="dragBox2" class="dragableBox">Limited drag</div>
+		<div id="dragBox3" class="dragableBox">Limited drag</div>
+	
+	</div>
+	<div id="parentBox2">
+	
+		<div id="dragBox4" class="dragableBox">Limited drag</div>
+		<div id="dragBox5" class="dragableBox">Limited drag</div>
+		<div id="dragBox6" class="dragableBox">Unlimited drag</div>
+	
+	</div>
+
+<script type="text/javascript">
+
+// Custom drop action for the country boxes
+
+function dropItems(idOfDraggedItem,targetId,x,y)
+{
+	var targetObj = document.getElementById(targetId);	// Creating reference to target obj
+	var sourceObj = document.getElementById(idOfDraggedItem);	// Creating reference to source, i.e. dragged object
+	
+	var articleId = sourceObj.id.replace(/[^0-9]/gi,'');
+	
+	dynConObj.loadContent('articleContent','includes/article' + articleId + '.html');
+		
+}
+
+
+
+var dragDropObj = new DHTMLSuite.dragDrop();	// Creating drag and drop object
+
+// Assigning drag events to the capitals
+dragDropObj.addSource('dragBox1',true,true,true,'parentBox1');	// Make <div id="box1"> dragable. slide item back into original position after drop
+dragDropObj.addSource('dragBox2',true,true,true,'parentBox1');	// Make <div id="box1"> dragable. slide item back into original position after drop
+dragDropObj.addSource('dragBox3',true,true,true,'parentBox1');	// Make <div id="box1"> dragable. slide item back into original position after drop
+
+dragDropObj.addSource('dragBox4',true,true,true,'parentBox2');	// Make <div id="box1"> dragable. slide item back into original position after drop
+dragDropObj.addSource('dragBox5',true,true,true,'parentBox2');	// Make <div id="box1"> dragable. slide item back into original position after drop
+dragDropObj.addSource('dragBox6',true);	// Make <div id="box1"> dragable. slide item back into original position after drop
+
+// Assigning drop events on the countries
+//dragDropObj.addTarget('articleBody','dropItems'); // Set <div id="leftColumn"> as a drop target. Call function dropItems on drop
+
+
+dragDropObj.init();	// Initizlizing drag and drop object
+
+dynConObj = new DHTMLSuite.dynamicContent();	// Creating object of class DHTMLSuite_dynamicContent
+dynConObj.setWaitMessage(false);
+
+</script>
+
+
+
+</body>
+</html>

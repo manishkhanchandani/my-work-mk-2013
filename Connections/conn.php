@@ -12,7 +12,7 @@ mysql_select_db($database_conn, $conn);
 //adodb try
 $site_path = SITE_DIR;//'/home135/sub004/sc29722-KLXJ';
 include($site_path.'/adodb/adodb.inc.php');
-$ADODB_CACHE_DIR = $site_path.'/ADODB_cache';
+$ADODB_CACHE_DIR = $site_path.'/ADODB_cache/world';
 $connAdodb = ADONewConnection('mysql');
 $connAdodb->Connect($hostname_conn, $username_conn, $password_conn, $database_conn);
 //$connAdodb->LogSQL();

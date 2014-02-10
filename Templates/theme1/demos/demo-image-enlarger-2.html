@@ -1,0 +1,41 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01//EN" "http://www.w3.org/TR/html4/strict.dtd">
+<HTML>
+<HEAD>
+	<title>Image enlarger(class DHTMLSuite.imageEnlarger) </title>
+	<style type="text/css">
+	html,body{
+		margin:0px;
+		padding:0px;
+	}
+	#mainContainer{
+		margin:10px;
+	}
+	</style>
+	<link rel="stylesheet" href="css/demos.css" media="screen" type="text/css">
+	<script type="text/javascript" src="../js/separateFiles/dhtmlSuite-common.js"></script>
+	<script type="text/javascript">
+	DHTMLSuite.include("imageEnlarger");
+	</script>
+	<script type="text/javascript">
+	var enlargerObj = new DHTMLSuite.imageEnlarger();
+	function displayImage(imagePath,title,description)
+	{
+		enlargerObj.displayImage(imagePath,title,description);
+	}
+	
+	</script>
+</head>
+<body>	
+	<div id="header">
+		<img src="../images/logo.png">
+	</div>
+	<div id="mainContainer">
+		<div id="content">
+			<a href="#" onclick="displayImage('demo-images/imageEnlarger3.jpg','The view from my window.','This is the view from the window in my living room.');return false">The view from my window</a><br>
+			<a href="#" onclick="displayImage('demo-images/imageEnlarger1.jpg','','A nice picture from an Island of Norway');return false">A picture I took from a ferry.</a><br>
+			<a href="#" onclick="displayImage('demo-images/imageEnlarger2.jpg','Go Kart driving is fun.','This is from a picture from Aalesund, a city in Norway');return false">Summer fun - driving go karts.</a><br>
+			
+		</div>
+	</div>
+</body>
+</html>

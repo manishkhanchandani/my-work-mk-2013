@@ -1,0 +1,92 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01//EN" "http://www.w3.org/TR/html4/strict.dtd">
+<HTML>
+<HEAD>
+	<title>Dynamic content demo(class DHTMLSuite.dynamicContent) </title>
+	<link rel="stylesheet" href="css/demos.css" media="screen" type="text/css">
+	<style type="text/css">
+	/* CSS for the demo. CSS needed for the scripts are loaded dynamically by the scripts */
+	#mainContainer{
+		width:500px;
+		margin:0 auto;
+		margin-top:10px;
+		border:1px solid #000;
+		padding:2px;
+		height:400px;
+	}
+	
+	#capitals{
+		width:200px;
+		float:left;
+		border:1px solid #000;
+		background-color:#E2EBED;
+		padding:3px;
+		height:400px;
+	}
+	#countries{
+		width:300px;
+		float:right;
+		margin:2px;
+		height:400px;
+	}	
+	.dragableBox,.dragableBoxRight{
+		width:80px;
+		height:20px;
+		border:1px solid #000;
+		background-color:#FFF;		
+		margin-bottom:5px;
+		padding:10px;
+		font-weight:bold;
+		text-align:center;
+	}
+	div.dragableBoxRight{
+		height:65px;
+		width:110px;
+		float:left;
+		margin-right:5px;
+		padding:5px;
+		background-color:#E2EBED;
+	}
+	.dropBox{
+		width:190px;
+		border:1px solid #000;
+		background-color:#E2EBED;
+		height:400px;
+		margin-bottom:10px;
+		padding:3px;
+		overflow:auto;
+	}		
+	a{
+		color:#F00;
+	}
+		
+	.clear{
+		clear:both;
+	}
+	</style>	
+	<script type="text/javascript" src="../js/dhtml-suite-for-applications.js"></script>
+	<script type="text/javascript" src="../js/ajax.js"></script>
+</head>
+<body>	
+	<div id="header">
+		<img src="../images/logo.png">
+	</div>
+	<div id="mainContainer">
+		<div id="content">
+		
+		</div>
+		<div>
+			<a href="#" onclick="dynConObj.loadContent('content','includes/demo-dynamicContent-2.html');return false">Insert content from another file</a><br>
+			<a href="#" onclick="dynConObj.loadContent('content','includes/demo-dynamicContent.html');return false">Insert the first file again</a>
+		</div>
+	</div>
+
+<script type="text/javascript">
+
+dynConObj = new DHTMLSuite.dynamicContent();	// Creating object of class DHTMLSuite.dynamicContent
+dynConObj.loadContent('content','includes/demo-dynamicContent.html');	// Loading content into <div id="content">
+</script>
+
+
+
+</body>
+</html>

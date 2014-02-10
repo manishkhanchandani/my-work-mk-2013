@@ -1,0 +1,32 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01//EN" "http://www.w3.org/TR/html4/strict.dtd">
+<HTML>
+<HEAD>
+	<title>Demo 1: Slider</title>
+	<link rel="stylesheet" href="css/demos.css" media="screen" type="text/css">
+	<style type="text/css">
+	/* CSS for the demo. CSS needed for the scripts are loaded dynamically by the scripts */
+	</style>	
+	<script type="text/javascript" src="../js/dhtml-suite-for-applications.js"></script>
+</head>
+<body>
+	<div class="myClass"></div>
+	<a class="myClass"></a>
+	<a dragable="true">Tester</a>
+	<span dragable="true">Tester 2</a>
+	<span dragable="false">Tester 2</a>
+	
+<script type="text/javascript">
+var obj = new DHTMLSuite.domQuery();
+
+var elements = document.getElementsByClassName('myClass');
+alert(elements.length);
+
+var elements = document.getElementsByAttribute('dragable');
+alert(elements.length);
+
+</script>
+
+
+<div id="debug"></div>
+</body>
+</html>

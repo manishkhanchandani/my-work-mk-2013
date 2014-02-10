@@ -1,0 +1,111 @@
+<?
+@include($_SERVER['DOCUMENT_ROOT']."/config/log_visitors.inc");
+?>
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01//EN" "http://www.w3.org/TR/html4/strict.dtd">
+<html>
+<head>
+	<?
+	$keywords = "Ajax tooltip,Dynamic tooltip, DHTML Suite for applications";
+	@include($_SERVER['DOCUMENT_ROOT']."/config/metatags.inc");
+	?>	
+	<title>Ajax tooltip</title>
+	<script type="text/javascript" src="../js/ajax.js"></script>
+	<script type="text/javascript" src="../js/dhtml-suite-for-applications-without-comments.js"></script>
+	<style type="text/css">
+/* CSS only needed for the demo */
+
+body,html{
+	margin:0px;
+	padding:0px;
+	text-align:center;
+	background-color: #E2EBED;
+	font-family: Trebuchet MS, Lucida Sans Unicode, Arial, sans-serif;
+	line-height: 130%;
+	text-align:center;
+	height:100%;
+	width:100%;
+}
+
+
+#mainContainer{
+	width:660px;
+	padding:5px;
+	border-left:1px solid #317082;	
+	border-right:1px solid #317082;	
+	margin:0 auto;	/* Center align content, equivalent to margin-left:auto;margin-right:auto; */
+	text-align:left;	/* Override inherited text-align:center from the body tag */
+	background-color:#FFF;
+	height:100%;
+}
+
+#menuColumn{
+	width:200px;
+	float:right;
+	font-size:0.8em;
+}
+#mainContent{
+	width:410px;
+	float:left;	
+}
+
+.oddRow{
+	background-color:#FFF;
+}
+.evenRow{
+	background-color:#EEE;
+}
+
+.productTable{
+	border:3px double #000;
+}
+h3{
+	margin-top:0px;
+}
+th{
+	text-align:left;
+}
+
+/* End css for the demo */
+</style>	
+
+</head>
+<body>
+<script type="text/javascript">
+tooltipObj = new DHTMLSuite.dynamicTooltip();	// Create ONE tooltip object.
+</script>
+<div id="mainContainer">
+	<div id="header">
+		<img src="../images/logo.png">
+	</div>
+	<div id="menuColumn">
+		This demo illustrates how you can use the DHTMLSuite.dynamicTooltip class. Move your mouse over the "Info" links to see how it works.			
+	</div>
+	<div id="mainContent">
+		<table width="100%" class="productTable">
+			<thead>
+				<th>Product</th>
+				<th>Info</th>
+			</thead>
+			<tbody>
+				<tr class="oddRow">
+					<td>JS Calendar</td>
+					<td><a href="#" onmouseover="tooltipObj.displayTooltip('includes/dyn-tooltip2.inc',this);return false" onmouseout="tooltipObj.hideTooltip()">Info</a></td>	
+				</tr>
+				<tr class="evenRow">
+					<td>Dragable boxes</td>
+					<td><a href="#" onmouseover="tooltipObj.displayTooltip('includes/dyn-tooltip3.inc',this);return false" onmouseout="tooltipObj.hideTooltip()">Info</a></td>				
+				</tr>
+				<tr class="oddRow">
+					<td>Ajax tooltip</td>
+					<td><a href="#" onmouseover="tooltipObj.displayTooltip('includes/dyn-tooltip1.inc',this);return false" onmouseout="tooltipObj.hideTooltip()">Info</a></td>				
+				</tr>
+			</tbody>
+		</table>	
+	</div>
+</div>
+</body>
+<?
+include($_SERVER['DOCUMENT_ROOT']."/config/kontera.php");
+?>	
+
+</html>

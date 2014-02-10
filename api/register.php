@@ -14,6 +14,7 @@ try {
 	if ($content == 0) throw new Exception('Username Already Exists', 1005);
 	if ($content == 1) throw new Exception('Email Already Exists', 1006);
 	if ($content == 2) throw new Exception('Phone Already Exists', 1007);
+	if ($content == 3) throw new Exception('Please Try Again', 1010);
 	$r = array('success' => 1, 'data' => $content);
 } catch (Exception $e) {
 	$r = array('success' => 0, 'error' => 1, 'msg' => $e->getMessage(), 'code' => $e->getCode());

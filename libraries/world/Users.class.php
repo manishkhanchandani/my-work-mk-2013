@@ -37,6 +37,18 @@ class world_Users
 		if ($rs->fields['username'] == $username) return 0;
 		if ($rs->fields['email'] == $email) return 1;
 		if ($rs->fields['phone'] == $phone) return 2;
+		return 3;
+	}
+	
+	public function forgot($username)
+	{
+		global $connAdodb;
+		$sql = "select * from users where username = ".$connAdodb->qstr($username);
+		$rs = $connAdodb->Execute($sql);
+		if ($rs->RecordCount() === 0) {
+			return 0;
+		}
+		if ($rs->fields['status'] != 1) return 1;
 		$return = $rs->fields;
 		unset($return['password']);
 		return $return;
