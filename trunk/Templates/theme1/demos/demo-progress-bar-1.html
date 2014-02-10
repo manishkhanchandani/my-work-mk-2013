@@ -1,0 +1,32 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01//EN" "http://www.w3.org/TR/html4/strict.dtd">
+<HTML>
+<HEAD>
+	<title>Demo 1: Progress bar</title>
+	<link rel="stylesheet" href="css/demos.css" media="screen" type="text/css">
+	<script type="text/javascript" src="../js/dhtml-suite-for-applications-without-comments.js"></script>
+</head>
+<body>
+<div id="header">
+	<img src="../images/logo.png">
+</div>	
+<script type="text/javascript">
+
+var prObj = new DHTMLSuite.progressBar();
+prObj.init();
+prObj.setSteps(100);
+
+function demoProgressBar(currentStep)
+{
+	prObj.moveProgressBar(1);
+	currentStep++;
+	if(currentStep<=100){
+		setTimeout('demoProgressBar(' + currentStep + ')',50);
+	}	
+}
+demoProgressBar(1);
+
+
+
+</script>
+</body>
+</html>

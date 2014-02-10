@@ -1,0 +1,79 @@
+<? @include($_SERVER['DOCUMENT_ROOT']."/config/log_visitors.inc"); ?>
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01//EN" "http://www.w3.org/TR/html4/strict.dtd">
+<HTML>
+<HEAD>
+	<title>Demo 1: Color picker</title>
+	<link rel="stylesheet" href="css/demos.css" media="screen" type="text/css">
+	<script type="text/javascript" src="../js/ajax.js"></script>
+	<script type="text/javascript" src="../js/dhtml-suite-for-applications.js"></script>
+	<style type="text/css">
+	body{
+		margin:0px;
+		position:relative;
+	}
+
+	</style>
+</head>
+<div id="header">
+	<img src="../images/logo.png">
+</div>
+<div id="menuDiv">
+</div>
+
+<div id="myWindow" windowProperties="title:Color picker,resizable:true,closable:true,maxWidth:900,dragable:true,cookieName:cookieWindowDemo2_1,xPos:300,yPos:400,minWidth:265,minHeight:150,activeTabId:windowContent1">
+	<div id="windowContent1" class="DHTMLSuite_windowContent" tabProperties="tabTitle:Web colors,overflow:hidden">
+	</div>
+	<div id="windowContent2" class="DHTMLSuite_windowContent" tabProperties="tabTitle:Slider,active=1,overflow:hidden">
+	</div>
+	<div id="windowContent3" class="DHTMLSuite_windowContent" tabProperties="tabTitle:Styles,overflow:hidden">
+		<div id="tester"></div>
+	</div>
+</div>
+
+<div id="myDiv">
+
+</div>
+<div id="debug"></div>
+<script type="text/javascript">
+
+/* Step 1 - > Creaet a window widget */
+var windowModel = new DHTMLSuite.windowModel();
+DHTMLSuite.commonObj.setCssCacheStatus(false)
+windowModel.createWindowModelFromMarkUp('myWindow');
+
+var myWindow = new DHTMLSuite.windowWidget();
+myWindow.setLayoutOffsetHeightForTheStatusBar(1);
+myWindow.setLayoutCss('window-theme-windows.css');
+myWindow.addWindowModel(windowModel);
+myWindow.init();
+
+var webColorPalette = new DHTMLSuite.colorPalette( { width:300 } );
+webColorPalette.addAllWebColors(32);
+webColorPalette.init();
+
+var webColorPalette2 = new DHTMLSuite.colorPalette( { width:300 } );
+webColorPalette2.addGrayScaleColors(32);
+webColorPalette2.init();
+
+var colorSlider = new DHTMLSuite.colorSlider();
+
+colorSlider.init();
+
+colorSlider.setRgbColor('#AA5033');
+/*
+colorSlider.setHue(567);
+colorSlider.setSaturation(50);
+colorSlider.setBrightness(50);
+*/
+myWindow.appendContent('windowContent1',webColorPalette.getDivElement());
+myWindow.appendContent('windowContent1',webColorPalette2.getDivElement());
+myWindow.appendContent('windowContent2',colorSlider.getDivElement());
+
+var a =DHTMLSuite.commonObj.getLeftPos(document.getElementById('tester'));
+
+</script>
+
+
+
+</body>
+</html>
