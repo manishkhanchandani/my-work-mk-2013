@@ -1,0 +1,38 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01//EN" "http://www.w3.org/TR/html4/strict.dtd">
+<html>
+<head>
+	<title>Ajax tooltip</title>
+	<script type="text/javascript" src="../js/dhtml-suite-for-applications-without-comments.js"></script>
+	<style type="text/css">
+/* CSS only needed for the demo */
+
+body,html{
+	margin:0px;
+	padding:0px;
+	text-align:center;
+	background-color: #E2EBED;
+	font-family: Trebuchet MS, Lucida Sans Unicode, Arial, sans-serif;
+	line-height: 130%;
+	text-align:center;
+	height:100%;
+	width:100%;
+}
+
+
+
+/* End css for the demo */
+</style>	
+
+</head>
+<body>
+<ul id="dataModelGallery">
+	<li id="image1" thumbnailPath_small="demo-images/image1_small.jpg" largeImagePath="demo-images/image1_big.jpg"><img src="demo-images/image1.jpg" title="myImage" caption="This is the image caption"></li>
+	<li id="image2" thumbnailPath_small="demo-images/image2_small.jpg" largeImagePath="demo-images/image2_big.jpg"><img src="demo-images/image2.jpg" title="myImage" caption="This is the image caption of the second image"></li>
+</ul>
+<script type="text/javascript">
+var galleryModel = new DHTMLSuite.mediaCollection();
+galleryModel.addItemsFromMarkup('dataModelGallery');
+
+</script>
+</body>
+</html>

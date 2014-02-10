@@ -1,0 +1,181 @@
+<? @include($_SERVER['DOCUMENT_ROOT']."/config/log_visitors.inc"); ?>
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01//EN" "http://www.w3.org/TR/html4/strict.dtd">
+<HTML>
+<HEAD>
+	<title>Demo 1: Context menu</title>
+	<?
+	$keywords = "DHTML Context menu, Context menu, Javascript context menu, right click menu";
+	@include($_SERVER['DOCUMENT_ROOT']."/config/metatags.inc");
+	?>		
+	<link rel="stylesheet" href="css/demos.css" media="screen" type="text/css">
+	<script type="text/javascript">
+	<?
+	$theme = "zune";
+	if(isset($_GET['theme'])){
+		$theme = $_GET['theme'];
+		$theme = preg_replace("/[^a-z\-]/si","",$theme);
+		if($theme!='zune' && $theme!='blue' && $theme!='light-cyan' && $theme!='gray')$theme = "zune";		
+	}
+	?>
+	var DHTML_SUITE_THEME = '<? echo $theme; ?>';
+	</script>
+	<script type="text/javascript" src="../js/separateFiles/dhtmlSuite-common.js"></script>
+	<script type="text/javascript">
+	DHTMLSuite.include("contextMenu");
+	</script>
+	<style type="text/css">
+	#div1{
+		width:500px;
+		height:120px;
+		background-color:#AAA;
+	}
+	#div2{
+		width:500px;
+		height:120px;
+		background-color:#BBB;
+	}
+	#div3{
+		width:500px;
+		height:120px;
+		background-color:#CCC;
+	}
+	</style>
+</head>
+<body>
+<div id="header">
+	<img src="../images/logo.png">
+</div>	
+<div id="div1">
+	There's a context menu attached to this element.
+</div>
+<div id="div2">
+	There's a context menu attached to this element.
+</div>
+<div id="div3">
+	There's a context menu attached to this element.
+</div>
+<p><a href="/index.html?dhtml-suite-page=class-context-menu">DHTMLSuite.contextMenu</a> is based on the <a href="/index.html?dhtml-suite-page=class-menu-bar">DHTMLSuite.menuBar</a> widget. </p>
+<p>See different themes:</p>
+<a href="<? echo $_SERVER['PHP_SELF']; ?>?theme=blue">blue</a><br>
+<a href="<? echo $_SERVER['PHP_SELF']; ?>?theme=gray">gray</a><br>
+<a href="<? echo $_SERVER['PHP_SELF']; ?>?theme=light-cyan">light-cyan</a><br>
+<a href="<? echo $_SERVER['PHP_SELF']; ?>?theme=zune">zune</a><br>
+
+<ul id="menuModel" style="display:none">
+  <li id="50000"jsFunction="saveWork()" 
+    itemIcon="../images/disk.gif"><a href="#" title="Open the file menu">File</a>
+    <ul width="150">
+      <li id="500001" jsFunction="saveWork()" 
+        itemIcon="../images/disk.gif"><a href="#" title="Save your work">Save</a></li>
+      <li id="500002"><a href="#">Save As</a></li>
+      <li id="500004" itemType="separator"></li>
+      <li id="500003"><a href="#">Open</a>
+        <ul width="130">
+          <li id="5000031"><a href="#">Project</a>  
+          <li id="5000032"><a href="#">Template</a>  
+          <li id="5000033"><a href="#">File</a>  
+        </ul>
+      </li>
+    </ul>
+  </li>
+  <li id="50001"><a href="#">View</a>
+    <ul width="130">
+      <li id="500011"><a href="#">Source</a></li>
+      <li id="500012"><a href="#">Debug info</a></li>
+      <li id="500013"><a href="#">Layout</a></li>
+    </ul>
+  </li>
+  <li id="50003" itemType="separator"></li>
+  <li id="50002"><a href="#">Tools</a></li>
+  <li id="50004"><a href="#">Options</a></li>
+  <li id="50005"><a href="#">Help</a></li>
+  <li id="50006"><a href="#">Project</a></li>
+  <li id="50007"><a href="#">Go to</a>
+    <ul width="160">
+      <li id="500071"><a href="http://www.dhtmlgoodies.com">DHTMLGoodies.com</a></li>
+      <li id="500072"><a href="http://www.webmediatools.com">WebMediaTools.com</a></li>
+      <li id="500072"><a href="http://www.cbolson.com">CBolson.com</a></li>
+      <li id="500072"><a href="http://www.expertsrt.com">expertsrt.com</a></li>
+    </ul>  
+  </li>
+</ul> 
+
+<ul id="menuModel2" style="display:none">
+  <li id="60001"><a href="#">BODY element</a>
+    <ul width="130">
+      <li id="600011"><a href="#">Source</a></li>
+      <li id="600012"><a href="#">Debug info</a></li>
+      <li id="600013"><a href="#">Layout</a></li>
+    </ul>
+  </li>
+  <li id="60003" itemType="separator"></li>
+  <li id="60002"><a href="#">Tools</a></li>
+  <li id="60004"><a href="#">Options</a></li>
+  <li id="60005"><a href="#">Help</a></li>
+  <li id="60006"><a href="#">Project</a></li>
+  <li id="60007"><a href="#">Go to</a>
+    <ul width="160">
+      <li id="600071"><a href="http://www.dhtmlgoodies.com">DHTMLGoodies.com</a></li>
+      <li id="600072"><a href="http://www.webmediatools.com">WebMediaTools.com</a></li>
+      <li id="600072"><a href="http://www.cbolson.com">CBolson.com</a></li>
+      <li id="600072"><a href="http://www.expertsrt.com">expertsrt.com</a></li>
+    </ul>  
+  </li>
+</ul> 
+
+
+<script type="text/javascript">
+/* arguments to this function will be the menu element triggering the onclick event and the element triggering the context menu to be displayed */
+
+function saveItem(menuElement,srcElement)
+{
+	alert(menuElement.tagName);
+	alert(srcElement.tagName);
+}
+
+
+// Menu items for the first context menu
+var menuModel = new DHTMLSuite.menuModel();
+menuModel.addItem(1,'Save','../images/disk.gif','',false,'saveItem');
+menuModel.addItem(2,'Open','../images/open.gif','',false);
+menuModel.addSeparator(0);
+menuModel.addItem(3,'Save','','saveWork()',1);
+menuModel.addItem(4,'Tools','','',false);
+menuModel.init();
+
+// Menu items for the second element
+var menuModel2 = new DHTMLSuite.menuModel();
+menuModel2.addItem(1,'Save','../images/disk.gif','',false,'saveItem');
+menuModel2.addItem(2,'Open','../images/open.gif','',false);
+menuModel2.addSeparator(0);
+menuModel2.addItem(3,'Save as','','',false);
+menuModel2.addItem(4,'PDF','','',3);
+menuModel2.addItem(5,'RTF','','',3);
+menuModel2.init();
+
+
+var menuModel4 = new DHTMLSuite.menuModel();
+menuModel4.addItemsFromMarkup('menuModel');
+menuModel4.init();
+
+
+var menuModel5 = new DHTMLSuite.menuModel();
+menuModel5.addItemsFromMarkup('menuModel2');
+menuModel5.init();
+
+
+
+/* Only one contextMenu object per page */
+var contextMenu = new DHTMLSuite.contextMenu();
+DHTMLSuite.commonObj.setCssCacheStatus(false);
+contextMenu.setWidth(140);
+contextMenu.attachTo(document.body,menuModel5);
+contextMenu.attachTo('div3',menuModel);
+contextMenu.attachTo('div2',menuModel2);
+contextMenu.attachTo('div1',menuModel4);
+</script>
+<?
+@include($_SERVER['DOCUMENT_ROOT']."/config/kontera.php");
+?>
+</body>
+</html>

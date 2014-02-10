@@ -1,5 +1,6 @@
 <?php
 define('HTTP_PATH', 'http://world.mkgalaxy.com');
+define('THEME_DIR', HTTP_PATH.'/Templates/theme1');
 define('ROOT_DIR', dirname(__FILE__));
 define('LIBS_DIRECTORY', ROOT_DIR.'/libraries');
 define('WORLD_DIRECTORY', LIBS_DIRECTORY.'/world');

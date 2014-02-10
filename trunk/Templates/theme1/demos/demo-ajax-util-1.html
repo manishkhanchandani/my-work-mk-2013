@@ -1,0 +1,57 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01//EN" "http://www.w3.org/TR/html4/strict.dtd">
+<HTML>
+<HEAD>
+	<title>Dynamic content demo(class DHTMLSuite.dynamicContent) </title>
+	<link rel="stylesheet" href="css/demos.css" media="screen" type="text/css">
+	<style type="text/css">
+	/* CSS for the demo. CSS needed for the scripts are loaded dynamically by the scripts */
+	#ajaxUtilContainer{
+		width:800px;
+		margin:0 auto;
+		margin-top:10px;
+		border:1px solid #000;
+		padding:2px;
+		height:400px;
+	}
+	
+	a{
+		color:#F00;
+	}
+		
+	.clear{
+		clear:both;
+	}
+	</style>	
+	<script type="text/javascript" src="../js/dhtml-suite-for-applications.js"></script>
+	<script type="text/javascript" src="../js/ajax.js"></script>
+</head>
+<body>	
+	<div id="header">
+		<img src="../images/logo.png">
+	</div>
+	<div id="ajaxUtilContainer">
+		<h2>This is an example of the DHTMLSuite.ajaxUtil class.</h2>
+		<p>This demo sends a post request to the server with this code:</p>
+		<pre>
+&lt;script type="text/javascript">
+function myFunction(ajaxObj){
+	document.getElementById('content').innerHTML = ajaxObj.response;
+}
+DHTMLSuite.ajax.sendRequest('includes/include-ajax-util.php','var1=Alf&var2=Magne','myFunction');
+&lt;/script>		
+		
+		</pre>
+		<div id="content">
+		
+		</div>
+	</div>
+
+<script type="text/javascript">
+function myFunction(ajaxObj){
+	document.getElementById('content').innerHTML = ajaxObj.response;
+}
+DHTMLSuite.ajax.sendRequest('includes/include-ajax-util.php','var1=Alf&var2=Magne','myFunction');
+</script>
+
+</body>
+</html>

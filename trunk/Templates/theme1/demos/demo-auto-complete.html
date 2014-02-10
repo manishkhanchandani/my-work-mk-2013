@@ -1,0 +1,63 @@
+ <!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01//EN" "http://www.w3.org/TR/html4/strict.dtd">
+
+<HTML>
+
+<HEAD>
+
+	<title>auto complete demo(class DHTMLSuite.autoComplete) </title>
+
+	<link rel="stylesheet" href="css/demos.css" media="screen" type="text/css">
+	
+	<script type="text/javascript" src="../js/ajax.js"></script>	
+	<script type="text/javascript" src="../js/separateFiles/dhtmlSuite-common.js"></script>
+	<script>
+		DHTMLSuite.include('autoComplete');
+	</script>
+	<style>
+
+	input {
+
+		border:1px solid #aaa;
+
+	}
+
+	</style>
+
+</head>
+
+<body>	
+
+<br><br>
+
+<div align="center">
+
+select a county : <input type="text" id="country">
+
+<br><br><br>
+
+select a city : <input type="text" id="city">
+
+</div>
+
+
+
+<script type="text/javascript">
+
+autoCom = new DHTMLSuite.autoComplete();
+
+autoCom.add('country','includes/ajax-list-countries.php');
+
+autoCom.add('city','includes/ajax-list-cities.php');
+
+</script>
+
+</body>
+
+</html>
+
+
+
+
+
+
+
