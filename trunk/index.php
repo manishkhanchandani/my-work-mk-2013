@@ -14,7 +14,9 @@ $content_for_layout = ob_get_clean();
 <head>
 <meta charset="UTF-8">
 <title><?php echo $title; ?></title>
-<link rel="stylesheet" href="styles/main.css" media="screen" type="text/css">
+<script src="http://code.jquery.com/jquery-1.10.1.min.js"></script>
+<script src="http://code.jquery.com/jquery-migrate-1.2.1.min.js"></script>
+<link rel="stylesheet" href="<?php echo HTTP_PATH; ?>/styles/main.css" media="screen" type="text/css">
 </head>
 
 <body>
