@@ -38,7 +38,7 @@ function GetSQLValueString($theValue, $theType, $theDefinedValue = "", $theNotDe
 
 // *** Redirect if username exists
 $MM_flag="MM_insert";
-if (isset($_POST[$MM_flag])) {
+if (isset($_POST[$MM_flag]) && $_POST[$MM_flag] == 'form2') {
   $MM_dupKeyRedirect="/users";
   $loginUsername = $_POST['username'];
   $LoginRS__query = sprintf("SELECT username FROM users WHERE username=%s", GetSQLValueString($loginUsername, "text"));
@@ -78,10 +78,9 @@ if ((isset($_POST["MM_insert"])) && ($_POST["MM_insert"] == "form1")) {
   $Result1 = mysql_query($insertSQL, $conn) or die(mysql_error());
 }
 
-pr($_POST);
-$MM_Insert = '';
-if (isset($_POST['MM_Insert'])) {
-	$MM_Insert = $_POST['MM_Insert'];
+$MM_insert = '';
+if (isset($_POST['MM_insert'])) {
+	$MM_insert = $_POST['MM_insert'];
 }
 
 ?>
@@ -147,7 +146,7 @@ if (isset($_POST['username'])) {
 <div class="wrapper">
 	<div class="content">
 		<div id="form_wrapper" class="form_wrapper">
-			<form action="<?php echo $editFormAction; ?>" class="register <?php if (empty($MM_Insert) || $MM_Insert == 'form1') echo 'active'; ?>" name="form1" method="POST">
+			<form action="<?php echo $editFormAction; ?>" class="register <?php if (empty($MM_insert) || $MM_insert == 'form1') echo 'active'; ?>" name="form1" method="POST">
 				<h3>Register</h3>
 				<div class="column">
 					<div>
@@ -189,16 +188,16 @@ if (isset($_POST['username'])) {
 						<span>Send me updates</span>
 					</div>
 					<input type="submit" value="Register" />
-					<a href="#" rel="login" class="linkform">You have an account already? Log in here</a>
+					<a href="users" rel="login" class="linkform">You have an account already? Log in here</a>
 					<div class="clear"></div>
 				</div>
-				<input type="hidden" name="MM_Insert" value="form1" />
+				<input type="hidden" name="MM_insert" value="form1" />
 				<input type="hidden" name="status" value="1" />
 				<input type="hidden" name="created" value="" />
 				<input type="hidden" name="user_id" value="" />
 				<input type="hidden" name="access_level" value="Member" />
 			</form>
-			<form ACTION="<?php echo $loginFormAction; ?>" class="login <?php if ($MM_Insert == 'form2') echo 'active'; ?>" name="form2" method="POST">
+			<form ACTION="<?php echo $loginFormAction; ?>" class="login <?php if ($MM_insert == 'form2') echo 'active'; ?>" name="form2" method="POST">
 				<h3>Login</h3>
 				<div>
 					<label>Username:</label>
@@ -213,12 +212,12 @@ if (isset($_POST['username'])) {
 				<div class="bottom">
 					<div class="remember"><input type="checkbox" /><span>Keep me logged in</span></div>
 					<input type="submit" value="Login"></input>
-					<a href="users/register.html" rel="register" class="linkform">You don't have an account yet? Register here</a>
+					<a href="" rel="register" class="linkform">You don't have an account yet? Register here</a>
 					<div class="clear"></div>
 				</div>
-				<input type="hidden" name="MM_Insert" value="form2" />
+				<input type="hidden" name="MM_insert" value="form2" />
 			</form>
-			<form class="forgot_password <?php if ($MM_Insert == 'form3') echo 'active'; ?>" name="form3" method="post">
+			<form class="forgot_password <?php if ($MM_insert == 'form3') echo 'active'; ?>" name="form3" method="post">
 				<h3>Forgot Password</h3>
 				<div>
 					<label>Username or Email:</label>
@@ -231,7 +230,7 @@ if (isset($_POST['username'])) {
 					<a href="#" rel="register" class="linkform">You don't have an account? Register here</a>
 					<div class="clear"></div>
 				</div>
-				<input type="hidden" name="MM_Insert" value="form3" />
+				<input type="hidden" name="MM_insert" value="form3" />
 			</form>
 		</div>
 		<div class="clear"></div>
@@ -317,5 +316,4 @@ var sprytextfield2 = new Spry.Widget.ValidationTextField("spryname", "none", {va
 var sprytextfield3 = new Spry.Widget.ValidationTextField("spryphone", "none", {validateOn:["blur"]});
 var sprytextfield4 = new Spry.Widget.ValidationTextField("spryemail", "email", {validateOn:["blur"], hint:"Enter Email"});
 var sprypassword1 = new Spry.Widget.ValidationPassword("sprypassword1");
-var spryconfirm1 = new Spry.Widget.ValidationConfirm("spryconfirm1", "password");
-</script>
+var spryconfirm1 = new Spry.Widget.ValidationConfirm("spryconfirm1", "password
